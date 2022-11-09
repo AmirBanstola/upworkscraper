@@ -31,7 +31,7 @@ class UpworkSpider(scrapy.Spider):
 
     def parse(self, response):
         page = response.meta['page']
-        for i, freelancer in enumerate(response.css('h4 a.job-tile-name')):
+        for i, freelancer in enumerate(response.css('h4 a.job-tile-title')):
             name = freelancer.css('::text').extract_first().strip()
             profile_link = freelancer.css('::attr(href)').extract_first()
             rank = (page - 1) * self.FREELANCERS_ON_PAGE + i + 1
